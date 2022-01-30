@@ -74,7 +74,7 @@ const Register = () => {
               </div>
               <div className="form-floating">
                 <input type="password" className="form-control" id="floatingPassword" placeholder="Password" 
-                name ="password" onChange={handeChange} value={registerInput.name} />
+                name ="password" onChange={handeChange} value={registerInput.password} />
                 <label htmlFor ="floatingPassword">Password</label>
                 <span>{registerInput.errorList.password}</span>
               </div>

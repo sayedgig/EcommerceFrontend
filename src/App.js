@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import MasterLayout from './layouts/admin/MasterLayout';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch ,Redirect} from 'react-router-dom';
 import Home from './components/frontend/Home';
 import Login from './components/frontend/auth/Login';
 import Register from './components/frontend/auth/Register';
@@ -44,7 +44,7 @@ const App = () => {
                  render={(props) => <Home {...props} />} 
                  />
 
-                 <Route exact
+                 {/* <Route exact
                  path='/register' 
                  name='Register'
                  //rendor = {(props)=> <MasterLayout {...props} />} />
@@ -56,7 +56,15 @@ const App = () => {
                  name='Login'
                  //rendor = {(props)=> <MasterLayout {...props} />} />
                  render={(props) => <Login {...props} />} 
-                 />
+                 /> */}
+
+                <Route path='/login'>
+                    { localStorage.getItem('authToken') ? <Redirect to="/" />: <Login />}
+                </Route> 
+
+                <Route path='/register'>
+                    { localStorage.getItem('authToken') ? <Redirect to="/" />: <Register />}
+                </Route> 
 
                 </Switch>
             </div>
