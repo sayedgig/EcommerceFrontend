@@ -38,7 +38,7 @@ const Navbar = () => {
             </>
   
         )
-    }else{
+    } else{
         AuthButton = (
             <>  
                 <li className="nav-item">

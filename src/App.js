@@ -7,6 +7,7 @@ import Home from './components/frontend/Home';
 import Login from './components/frontend/auth/Login';
 import Register from './components/frontend/auth/Register';
 import axios from 'axios';
+import AdminPrivateRoute from './routes/AdminprivateRoute';
 
 
  
@@ -29,12 +30,7 @@ const App = () => {
             <Router>
             <div>
                 <Switch>
-                <Route exact
-                 path='/admin' 
-                 name='Admin'
-                 //rendor = {(props)=> <MasterLayout {...props} />} />
-                 render={(props) => <MasterLayout {...props} />} 
-                 />
+                
 
                 <Route exact
                  path='/' 
@@ -65,6 +61,13 @@ const App = () => {
                 <Route path='/register'>
                     { localStorage.getItem('authToken') ? <Redirect to="/" />: <Register />}
                 </Route> 
+
+               
+
+                <AdminPrivateRoute />
+              
+
+                
 
                 </Switch>
             </div>
