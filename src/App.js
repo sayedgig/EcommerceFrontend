@@ -8,6 +8,8 @@ import Login from './components/frontend/auth/Login';
 import Register from './components/frontend/auth/Register';
 import axios from 'axios';
 import AdminPrivateRoute from './routes/AdminprivateRoute';
+import page404 from './components/errors/page404';
+import page403 from './components/errors/page403';
 
 
  
@@ -34,12 +36,13 @@ const App = () => {
 
                 <Route exact
                  path='/' 
-                 exact
                  name='Home'
                  //rendor = {(props)=> <MasterLayout {...props} />} />
                  render={(props) => <Home {...props} />} 
                  />
 
+                <Route path='/404'render={(props) => <page404 {...props} />} />
+                <Route path='/403'render={(props) => <page403 {...props} />} />
                  {/* <Route exact
                  path='/register' 
                  name='Register'

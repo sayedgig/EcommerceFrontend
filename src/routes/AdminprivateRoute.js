@@ -12,7 +12,7 @@ const AdminPrivateRoute = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/checkAuth').then(res=>{
+    axios.get('/api/checkAuth').then(res=>{
       if (res.data.status===200){
         setAuthenticated(true);
         
@@ -29,13 +29,27 @@ const AdminPrivateRoute = () => {
   axios.interceptors.response.use(undefined , function axiosRetryinterceptor(err){
     if(err.response.status===401){
          aswal('warning','there are error','warning')  ; 
-    }else if(err.response.status===404){
-      aswal('warning','there are error','warning')  ; 
+    }else {
+      aswal('warning',`there are error ${err.response.status}`,'warning')  ; 
     }
     history.push('/');
      
     return Promise.reject(err);
   });
+
+  axios.interceptors.response.use( 
+    (response) =>  response ,
+    (err) => {
+      if(err.response.status===403){
+        aswal('forbidden',`there are error ${err.response.message}`,'warning')  ; 
+        history.push('/403');
+      }else  if(err.response.status===404){
+        aswal('404 error',`your page is not found `,'warning')  ; 
+        history.push('/404');
+      }
+      return Promise.reject(err);
+    }
+    );
 
   
   if (loading){
