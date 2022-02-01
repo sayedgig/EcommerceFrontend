@@ -31,13 +31,15 @@ axios.get('/sanctum/csrf-cookie')
     axios.post('/api/login',data).then(response => {
           if(response.data.status ===200){
                 
-                  //console.log(response.data);
+                  console.log(response.data);
 
                   localStorage.setItem('authToken',response.data.access_token);
                    localStorage.setItem('authUserName',response.data.userName);
                    swal("success",response.data.message,"success");
-                   if(response.data.role==='admin'){
-                    history.push("/admin/dashboard");
+                
+                   if(response.data.adminRole==='admin'){
+                    history.push("/admin");
+                    //history.push("/");
                    }else{
                     history.push("/");
                   }

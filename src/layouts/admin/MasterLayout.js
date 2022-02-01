@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import '../../assets/admin/css/styles.css';
 import '../../assets/admin/js/scripts.js';
-import routes from '../../routes/routes';
+
 import { BrowserRouter as Router, Route, Switch ,Redirect } from 'react-router-dom';
 import Dashboard from '../../components/admin/Dashboard';
 import Profile from '../../components/admin/Profile';

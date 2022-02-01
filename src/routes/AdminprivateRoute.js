@@ -6,9 +6,9 @@ import aswal from 'sweetalert';
 import { useHistory } from 'react-router-dom';
 
 const AdminPrivateRoute = () => {
+
   const history = useHistory();
   const [authenticated, setAuthenticated] = useState(false);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const AdminPrivateRoute = () => {
         setAuthenticated(true);
         
       }
-      setLoading(false);
+       setLoading(false);
      
-    })
+     })
     return () =>{
       setAuthenticated(false);
     }
@@ -64,7 +64,8 @@ const AdminPrivateRoute = () => {
 
     <Route exact path='/admin'>
    
-    { !authenticated ? <Redirect to="/login" />: <MasterLayout />}
+    { authenticated ? <MasterLayout /> : <Redirect to="/login" />}
+
     
     </Route> 
   );
