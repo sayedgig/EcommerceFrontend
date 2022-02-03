@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch ,Redirect } from 'react-router-d
 import Dashboard from '../../components/admin/Dashboard';
 import Profile from '../../components/admin/Profile';
 import AddCategory from '../../components/admin/Category/AddCategory';
+import ViewCategory from '../../components/admin/Category/ViewCategory';
 
 
 const MasterLayout = () => {
@@ -41,6 +42,12 @@ const MasterLayout = () => {
                               path='/admin/add-category' 
                               name='add-category'
                               render={(props) => <AddCategory {...props} />} 
+                              />
+
+                             <Route 
+                              path='/admin/view-category' 
+                              name='view-category'
+                              render={(props) => <ViewCategory {...props} />} 
                               />
 
                               <Redirect  from="/admin" to="/admin/dashboard"/>
