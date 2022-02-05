@@ -10,6 +10,7 @@ import Dashboard from '../../components/admin/Dashboard';
 import Profile from '../../components/admin/Profile';
 import AddCategory from '../../components/admin/Category/AddCategory';
 import ViewCategory from '../../components/admin/Category/ViewCategory';
+import EditCategory from '../../components/admin/Category/EditCategory';
 
 
 const MasterLayout = () => {
@@ -48,6 +49,13 @@ const MasterLayout = () => {
                               path='/admin/view-category' 
                               name='view-category'
                               render={(props) => <ViewCategory {...props} />} 
+                              />
+
+                              <Route 
+                              path='/admin/edit-category/:id'
+                                exact          
+                              name='edit-category'
+                              render={(props) => <EditCategory {...props} />} 
                               />
 
                               <Redirect  from="/admin" to="/admin/dashboard"/>

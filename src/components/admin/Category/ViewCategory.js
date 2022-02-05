@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 const ViewCategory = () => {
     const [loading,setLoading] = useState(true);
@@ -35,7 +35,7 @@ const ViewCategory = () => {
                 <td>{cat.slug}</td>
                 <td>{cat.name}</td>
                 <td>{cat.status}</td>
-                <td>edit</td>
+                <td><Link  to={`/admin/edit-category/${cat.id}`} className="btn btn-success btn-sm">Edit</Link></td>
                 <td>delete</td>
     </tr>);
            
