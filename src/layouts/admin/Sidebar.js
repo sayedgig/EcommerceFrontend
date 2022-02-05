@@ -27,23 +27,24 @@ const Sidebar = () => {
                             <Link className="nav-link" to="/admin/view-Category">view-category</Link>
                         </nav>
                     </div>
+
+                    
                     <Link className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                         <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                        Pages
+                        Products
                         <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                     </Link>
                     <div className="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                         <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                             <Link className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                Authentication
+                                 Products
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                             </Link>
                             <div className="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav className="sb-sidenav-menu-nested nav">
-                                    <Link className="nav-link" to="login.html">Login</Link>
-                                    <Link className="nav-link" to="register.html">Register</Link>
-                                    <Link className="nav-link" to="password.html">Forgot Password</Link>
-                                </nav>
+                                    <Link className="nav-link" to="/admin/add-product">add product</Link>
+                                    <Link className="nav-link" to="/admin/view-product">view product</Link>
+                                </nav>                                    
                             </div>
                             <Link className="nav-link collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                 Error

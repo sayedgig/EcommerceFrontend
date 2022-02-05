@@ -1,0 +1,12 @@
+product 
+add product component :
+design add product component  
+-> container px4
+-> simple cart design 
+->header text + link 
+-> body form contain javasript tabs 
+-> add controlls in each tabs
+-----------------------------
+fill category list 
+-> get data by axios during useEffect 
+

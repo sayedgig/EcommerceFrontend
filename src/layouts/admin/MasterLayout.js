@@ -8,10 +8,15 @@ import '../../assets/admin/js/scripts.js';
 import { BrowserRouter as Router, Route, Switch ,Redirect } from 'react-router-dom';
 import Dashboard from '../../components/admin/Dashboard';
 import Profile from '../../components/admin/Profile';
+
+//category
 import AddCategory from '../../components/admin/Category/AddCategory';
 import ViewCategory from '../../components/admin/Category/ViewCategory';
 import EditCategory from '../../components/admin/Category/EditCategory';
 
+//products 
+import AddProduct from '../../components/admin/Product/AddProduct';
+import ViewProduct from '../../components/admin/Product/ViewProduct';
 
 const MasterLayout = () => {
   return(
@@ -39,24 +44,24 @@ const MasterLayout = () => {
                               render={(props) => <Profile {...props} />} 
                               />
 
-                            <Route 
-                              path='/admin/add-category' 
-                              name='add-category'
-                              render={(props) => <AddCategory {...props} />} 
-                              />
+                            {/* Category */}
+                            <Route path='/admin/add-category' name='add-category'
+                              render={(props) => <AddCategory {...props} />} />
 
-                             <Route 
-                              path='/admin/view-category' 
-                              name='view-category'
-                              render={(props) => <ViewCategory {...props} />} 
-                              />
+                             <Route path='/admin/view-category' name='view-category'
+                              render={(props) => <ViewCategory {...props} />} />
 
-                              <Route 
-                              path='/admin/edit-category/:id'
-                                exact          
-                              name='edit-category'
-                              render={(props) => <EditCategory {...props} />} 
-                              />
+                              <Route  path='/admin/edit-category/:id'  exact name='edit-category'
+                              render={(props) => <EditCategory {...props} />} />
+
+                              {/* Product */}
+
+                              <Route path='/admin/add-product' name='add-product'
+                              render={(props) => <AddProduct {...props} />} />
+
+                             <Route path='/admin/view-product' name='view-product'
+                              render={(props) => <ViewProduct {...props} />} />
+
 
                               <Redirect  from="/admin" to="/admin/dashboard"/>
                               </Switch>
