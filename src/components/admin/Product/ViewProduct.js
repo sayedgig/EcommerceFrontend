@@ -8,6 +8,8 @@ const ViewProduct = () => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
+
+    document.title="view product";
         
     axios.get('/api/view-product').then(res=>{
  
@@ -34,6 +36,7 @@ if (loading) {
   productList.map((prod)=>{
         return( <tr key={prod.id}>
             <th scope="row">{prod.id}</th>
+            <td>{prod.category.name}</td>
             <td>{prod.slug}</td>
             <td>{prod.name}</td>
             <td>{prod.status}</td>
@@ -62,6 +65,8 @@ if (loading) {
                    <thead>
                        <tr>
                        <th scope="col">ID</th>
+                       
+                       <th scope="col">category_id</th>
                        <th scope="col">Slug</th>
                        <th scope="col">Name</th>
                        <th scope="col">Status</th>
