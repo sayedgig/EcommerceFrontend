@@ -5,7 +5,7 @@ import aswal from 'sweetalert';
 
 const Addproduct = () => {
 
-  const [picture, setpicture] = useState();
+  const [picture, setpicture] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   useEffect(() => {
     axios.get('/api/all-category').then(res => {
@@ -54,23 +54,23 @@ const Addproduct = () => {
     e.preventDefault();
     const formData = new FormData();
  
-  formData.append('image',picture.image);
+  //formData.append('image',picture.image);
 
   formData.append('category_id',productInput.category_id);
   formData.append('slug',productInput.slug);
   formData.append('name',productInput.name);
-  formData.append('description',productInput.description);
+  //formData.append('description',productInput.description);
 
   formData.append('meta_title',productInput.meta_title);
-  formData.append('meta_keyword',productInput.meta_keyword);
-  formData.append('meta_description',productInput.meta_description);
+  //formData.append('meta_keyword',productInput.meta_keyword);
+  //formData.append('meta_description',productInput.meta_description);
 
   formData.append('selling_price',productInput.selling_price);
   formData.append('original_price',productInput.original_price);
   formData.append('quantity',productInput.quantity);
   formData.append('brand',productInput.brand);
-  formData.append('feature',productInput.feature);
-  formData.append('popular',productInput.popular);
+  //formData.append('feature',productInput.feature);
+  //formData.append('popular',productInput.popular);
   formData.append('status',productInput.status);
 
     axios.post('/api/store-product',formData).then(res=>{
