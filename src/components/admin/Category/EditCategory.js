@@ -31,11 +31,6 @@ const EditCategory = (props) => {
 
     useEffect(() => {
         const category_id = props.match.params.id;
-
-    //     fetch(`http://127.0.0.1:8000/api/edit-category/${category_id}`)
-    //   .then((res) => res.json())
-    //   .then((data) => setProductsList([...data]))
-    //   .then(setisLoading(false));
         axios.get(`/api/edit-category/${category_id}`).then(res=>{
             if(res.data.status===200){
                 //setCatewgory(...catewgoryInput ,res.data.category);

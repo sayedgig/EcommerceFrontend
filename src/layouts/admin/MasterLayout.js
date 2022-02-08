@@ -17,6 +17,8 @@ import EditCategory from '../../components/admin/Category/EditCategory';
 //products 
 import AddProduct from '../../components/admin/Product/AddProduct';
 import ViewProduct from '../../components/admin/Product/ViewProduct';
+import EditProduct from '../../components/admin/Product/EditProduct';
+
 
 const MasterLayout = () => {
   return(
@@ -61,7 +63,9 @@ const MasterLayout = () => {
 
                              <Route path='/admin/view-product' name='view-product'
                               render={(props) => <ViewProduct {...props} />} />
-
+                              
+                              <Route  path='/admin/edit-product/:id'  exact name='edit-product'
+                              render={(props) => <EditProduct {...props} />} />        
 
                               <Redirect  from="/admin" to="/admin/dashboard"/>
                               </Switch>

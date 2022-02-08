@@ -40,7 +40,7 @@ if (loading) {
             <td>{prod.slug}</td>
             <td>{prod.name}</td>
             <td>{prod.status}</td>
-            <td><Link  to={`/admin/edit-category/${prod.id}`} className="btn btn-success btn-sm">Edit</Link></td>
+            <td><Link  to={`/admin/edit-product/${prod.id}`} className="btn btn-success btn-sm">Edit</Link></td>
             <td><button className="btn btn-danger btn-sm">delete </button></td>
 </tr>);
        
