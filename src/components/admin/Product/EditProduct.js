@@ -22,14 +22,18 @@ const EditProduct = (props) => {
         original_price:'',
         quantity:'',
         brand:'',
-        feature:'',
-        popular:'',
-        status:'',
+       
     
       });
     
       const [errorList, setErrorList] = useState([]);
       const history = useHistory();
+      const [allChechbox, setCheckbox] = useState([{
+        feature:'',
+        popular:'',
+        status:'',
+      }]);
+      
 
       //////////////////////////////////////////////////
 
@@ -65,6 +69,7 @@ const EditProduct = (props) => {
                   
             //   };
               setProduct(res.data.product);
+              setCheckbox(res.data.product);
               setisLoading(false)
              
           } else if(res.data.status===404){
@@ -83,7 +88,10 @@ const EditProduct = (props) => {
   
     }
   
-  
+    const handleCheckbox=(e) =>{
+        e.persist();
+        setCheckbox({...allChechbox , [e.target.name]:e.target.checked});
+    }
   
     const updateProduct = (e) =>{
       e.preventDefault();
@@ -114,9 +122,9 @@ const EditProduct = (props) => {
         name : productInput.name, 
         description : productInput.description, 
 
-        status : productInput.status == true ? '1':'0' , 
-        popular : productInput.popular == true ? '1':'0' , 
-        feature : productInput.feature == true ? '1':'0' , 
+        status : allChechbox.status == true ? '1':'0' , 
+        popular : allChechbox.popular == true ? '1':'0' , 
+        feature : allChechbox.feature == true ? '1':'0' , 
 
         meta_title : productInput.meta_title, 
         meta_keyword : productInput.meta_keyword, 
@@ -143,6 +151,8 @@ const EditProduct = (props) => {
         
       });
     }
+
+   
     
     if (isLoading){
         return (<h4>Loading ....</h4>);
@@ -264,7 +274,8 @@ const EditProduct = (props) => {
                                           className="form-control" type="file" id="formFile" />
                                         </div>
                                         <div className="form-check col-md-4">
-                                          <input name="feature" onChange={handleInput} value={productInput.feature}
+                                          <input name="feature" 
+                                           onChange={handleCheckbox} defaultChecked={allChechbox.feature===1 ? true:false}
                                           className="form-check-input" type="checkbox" 
                                           id="flexCheckDefault"/>
                                           <label className="form-check-label" htmlFor="flexCheckDefault">
@@ -272,7 +283,8 @@ const EditProduct = (props) => {
                                           </label>
                                         </div>
                                         <div className="form-check col-md-4">
-                                          <input name="popular" onChange={handleInput} value={productInput.popular}
+                                          <input name="popular" 
+                                           onChange={handleCheckbox} defaultChecked={allChechbox.popular===1 ? true:false}
                                            className="form-check-input" type="checkbox"  
                                           id="flexCheckChecked"  />
                                           <label className="form-check-label" htmlFor="flexCheckChecked">
@@ -281,7 +293,8 @@ const EditProduct = (props) => {
                                         </div>
   
                                         <div className="form-check col-md-4">
-                                          <input name="status" onChange={handleInput} value={productInput.status}
+                                          <input name="status"
+                                           onChange={handleCheckbox} defaultChecked={allChechbox.status===1 ? true:false}
                                           className="form-check-input" type="checkbox" 
                                           id="flexCheckChecked3"  />
                                           <label className="form-check-label" htmlFor="flexCheckChecked3">
