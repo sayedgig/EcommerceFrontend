@@ -25,15 +25,21 @@ const ViewProduct = () => {
 
 
 var viewProduct_htmlTable="";
-
+var productStatus ="";
 if (loading) {
     return (
         <h4>Loading Product ...</h4>
     );
 }else{
     
+   
   viewProduct_htmlTable = 
   productList.map((prod)=>{
+        if(prod.status===0){
+          productStatus="shown"
+        }else if(prod.status===1){
+          productStatus="hidden"
+        }
         return( <tr key={prod.id}>
             <th scope="row">{prod.id}</th>
             <td>{prod.category.name}</td>
@@ -41,7 +47,7 @@ if (loading) {
             <td>{prod.name}</td>
             <td>{prod.status}</td>
             <td><Link  to={`/admin/edit-product/${prod.id}`} className="btn btn-success btn-sm">Edit</Link></td>
-            <td><button className="btn btn-danger btn-sm">delete </button></td>
+            <td>{productStatus}</td>
 </tr>);
        
     });
