@@ -10,6 +10,9 @@ import axios from 'axios';
 import AdminPrivateRoute from './routes/AdminprivateRoute';
 import page404 from './components/errors/page404';
 import page403 from './components/errors/page403';
+import ViewCategory from './components/frontend/collections/ViewCategory';
+import ViewProduct from './components/frontend/collections/ViewMyProduct';
+import ViewMyProduct from './components/frontend/collections/ViewMyProduct';
 
 
  
@@ -61,13 +64,27 @@ const App = () => {
                     { localStorage.getItem('authToken') ? <Redirect to="/" />: <Login />}
                 </Route> 
 
+
+
+                <Route path="/collections/:slug" component={ViewMyProduct} />
+                
+                <Route exact path='/collections'>
+                    <ViewCategory />
+                </Route>  
+
+                
+
+
+                
+
+
                 <Route path='/register'>
                     { localStorage.getItem('authToken') ? <Redirect to="/" />: <Register />}
                 </Route> 
 
                
 
-                <AdminPrivateRoute />
+                {/* <AdminPrivateRoute /> */}
               
 
                 

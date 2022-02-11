@@ -67,7 +67,7 @@ const Navbar = () => {
                     </li>
 
                     <li className="nav-item">
-                    <Link className="nav-link" to="#">collection</Link>
+                    <Link className="nav-link" to="/collections">collection</Link>
                     </li>
 
                     {AuthButton}
