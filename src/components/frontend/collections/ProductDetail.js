@@ -11,10 +11,23 @@ const ProductDetail = (props) => {
   const history = useHistory();
   const [product, setProduct] = useState([]);
   const [loding, setLoding] = useState(true);
-  
+  const [quantity, setQuantity] = useState(1);
 
   const productCount = product.length;
 
+
+  const handleDecriment = () => {
+    if(quantity>1){
+      setQuantity(prev => prev -1);
+    }
+    
+  }
+  const handleIncriment = () => {
+    if(quantity <10){
+      setQuantity(prev => prev +1);
+    }
+   
+  }
 useEffect(() => {
   let isMounted = true;
   const producSlug = props.match.params.product;
@@ -51,9 +64,10 @@ if (loding){
                        <div className="row">
                          <div className="col-md-3 mt-3">
                            <div className="input-group">
-                             <button type="button" className="input-group-text">-</button>
-                             <input type="text" className="form-control text-center" value="1"/>
-                             <button type="button" className="input-group-text">+</button>
+                             <button type="button" onClick={handleDecriment} className="input-group-text">-</button>
+                             
+                             <div className="form-control text-center">{quantity}</div>
+                             <button type="button" onClick={handleIncriment}  className="input-group-text">+</button>
 
                            </div>
                          </div>
