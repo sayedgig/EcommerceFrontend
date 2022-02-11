@@ -51,7 +51,7 @@ else
               <div className="col-md-3" key={ind}>
                 <div className="card">
                   <div className="card-body">
-                    <Link to = "">
+                    <Link to = {`/collections/${item.category.slug}/${item.slug}`}>
                     <h5>{item.name}</h5>
                     </Link>
                   </div>
