@@ -11,7 +11,7 @@ const Cart = (props) => {
   const history = useHistory();
   const [cart, setCart] = useState([]);
   const [loding, setLoding] = useState(true);
-  
+  var totalCartPrice = 0;
 
   useEffect(() => {
     let isMounted = true;
@@ -102,6 +102,7 @@ const updateCartQuantity = (cart_id,scope,qty) => {
       var cart_table ='';
      
       cart_table = cart.map((item) => {
+          totalCartPrice += item.product.selling_price * item.product_qty;
           return (
             <tr>
             <th scope="row">{item.product.name}</th>
@@ -167,6 +168,22 @@ const updateCartQuantity = (cart_id,scope,qty) => {
                <div className="col-md-12">
                 {cart_html}
                </div>
+               <div className="col-md-8"></div>
+                   <div className="col-md-4">
+                       <div className="card card-body mt-3">
+                           <h4>sub total
+                               <span className="float-end">{totalCartPrice}</span>
+                           </h4>
+                           <h4>grand total
+                               <span className="float-end">{totalCartPrice}</span>
+                           </h4>
+                           <hr />
+                           <Link to="/checkout" className="btn btn-primary" >checkout</Link>
+
+                       </div>
+
+                   </div>
+               
 
           </div>
         </div>
