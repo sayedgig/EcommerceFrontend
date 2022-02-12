@@ -43,10 +43,35 @@ const Cart = (props) => {
   
   },[history]);
   
-const handleDecriment= () =>{
+const handleDecriment= (cart_id) =>{
+    
+    setCart(cart.map(item => {
+        const $unit = item.product_qty >0 ? 1 :0 ;
+      return  item.id===cart_id ? {...item,product_qty:item.product_qty -$unit} : item
+    }));
+    updateCartQuantity(cart_id,"dec");
 
 }
-const handleIncriment= () =>{
+const handleIncriment= (cart_id) =>{
+    setCart(cart.map(item => {
+        const $unit = item.product_qty <10 ? 1 :0 ;
+      return  item.id===cart_id ? {...item,product_qty:item.product_qty +$unit} : item
+    }));
+    updateCartQuantity(cart_id,"inc");
+
+}
+
+const updateCartQuantity = (cart_id,scope) => {
+    axios.put(`/api/update-quantity/${cart_id}/${scope}`).then(res => {
+        //console.log(res.data.status);
+        if(res.data.status===200){
+            swal("success",res.data.message,"success");
+        }else if(res.data.status===404){
+            swal("warning",res.data.message,"warning");
+        }else if(res.data.status===401){
+            swal("warning",res.data.message,"warning");
+        }
+    });
 
 }
 
@@ -63,10 +88,10 @@ const handleIncriment= () =>{
             <td width="15%">
 
                     <div className="input-group">
-                       <button type="button" onClick={handleDecriment} className="input-group-text">-</button>
+                       <button type="button" onClick={(e) => handleDecriment(item.id,e)} className="input-group-text">-</button>
                     
                         <div className="form-control text-center">{item.product_qty}</div>
-                        <button type="button" onClick={handleIncriment}  className="input-group-text">+</button>
+                        <button type="button" onClick={(e) => handleIncriment(item.id,e)}  className="input-group-text">+</button>
 
                 </div>
             </td>
