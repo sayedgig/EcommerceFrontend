@@ -15,6 +15,7 @@ import ViewProduct from './components/frontend/collections/ViewMyProduct';
 import ViewMyProduct from './components/frontend/collections/ViewMyProduct';
 import ProductDetail from './components/frontend/collections/ProductDetail';
 import Cart from './components/frontend/collections/Cart';
+import Checkout from './components/frontend/collections/Checkout';
 
 
  
@@ -72,6 +73,7 @@ const App = () => {
                 <Route  exact path="/collections/:slug" component={ViewMyProduct} />
                
                 <Route  exact path="/cart" component={Cart} />  
+                <Route  exact path="/checkout" component={Checkout} /> 
                 
                 <Route exact path='/collections'>
                     <ViewCategory />
