@@ -70,6 +70,10 @@ const Navbar = () => {
                     <Link className="nav-link" to="/collections">collection</Link>
                     </li>
 
+                    <li className="nav-item">
+                    <Link className="nav-link" to="/cart">Cart</Link>
+                    </li>
+
                     {AuthButton}
                    
 

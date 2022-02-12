@@ -14,6 +14,7 @@ import ViewCategory from './components/frontend/collections/ViewCategory';
 import ViewProduct from './components/frontend/collections/ViewMyProduct';
 import ViewMyProduct from './components/frontend/collections/ViewMyProduct';
 import ProductDetail from './components/frontend/collections/ProductDetail';
+import Cart from './components/frontend/collections/Cart';
 
 
  
@@ -61,6 +62,8 @@ const App = () => {
                  render={(props) => <Login {...props} />} 
                  /> */}
 
+              
+
                 <Route path='/login'>
                     { localStorage.getItem('authToken') ? <Redirect to="/" />: <Login />}
                 </Route> 
@@ -68,7 +71,7 @@ const App = () => {
                 <Route   path="/collections/:category/:product" component={ProductDetail} />
                 <Route  exact path="/collections/:slug" component={ViewMyProduct} />
                
-                
+                <Route  exact path="/cart" component={Cart} />  
                 
                 <Route exact path='/collections'>
                     <ViewCategory />
