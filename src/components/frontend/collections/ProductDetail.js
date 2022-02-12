@@ -53,6 +53,28 @@ useEffect(() => {
 
 },[props.match.params.category,props.match.params.product,history]);
 
+const submitAddtocart = (e) => {
+ e.preventDefault();
+ const data = {
+   'product_id' : product.id,
+   'product_qty':quantity,
+ }
+   axios.post('/api/add-to-cart',data).then(res => {
+     if (res.data.status===201){
+       swal("success",res.data.message,"success");
+
+     }else if (res.data.status===409){
+      swal("warning",res.data.message,"warning");
+      }else if (res.data.status===401){
+      swal("warning",res.data.message,"warning");
+     }else if (res.data.status===404){
+      swal("warning",res.data.message,"warning");
+
+     }
+   });
+
+}
+
 if (loding){
   return (<h6>Loading product details ...</h6>);
 }else {
@@ -72,7 +94,7 @@ if (loding){
                            </div>
                          </div>
                          <div className="col-md-3 mt-3">
-                         <button type="button" className="btn-primary w-100">add to cart</button>
+                         <button type="submit" className="btn-primary w-100" onClick={submitAddtocart}>add to cart</button>
                          
                          </div>
                        </div>
