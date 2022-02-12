@@ -49,7 +49,9 @@ const handleDecriment= (cart_id) =>{
         const $unit = item.product_qty >0 ? 1 :0 ;
       return  item.id===cart_id ? {...item,product_qty:item.product_qty -$unit} : item
     }));
+    console.log(cart[0]);
     updateCartQuantity(cart_id,"dec");
+     //swal("success",cart[0].product_qty,"success")
 
 }
 const handleIncriment= (cart_id) =>{
@@ -57,11 +59,30 @@ const handleIncriment= (cart_id) =>{
         const $unit = item.product_qty <10 ? 1 :0 ;
       return  item.id===cart_id ? {...item,product_qty:item.product_qty +$unit} : item
     }));
+    console.log(cart[0]);
     updateCartQuantity(cart_id,"inc");
+     //swal("success",cart[0].product_qty,"success")
+}
+
+const handleDelete = (e,cart_id) =>{
+
+    e.preventDefault();
+    const thisClick = e.target;
+    thisClick.innerText="removing....";
+    axios.delete(`/api/delete-cartitem/${cart_id}`).then(res=>{
+        if(res.data.status===200){
+            swal("success",res.data.message,"success");
+            thisClick.closest("tr").remove();
+            
+        }else if(res.data.status===404){
+            swal("error",res.data.message,"error");
+            thisClick.innerText="remove";
+        }
+    });
 
 }
 
-const updateCartQuantity = (cart_id,scope) => {
+const updateCartQuantity = (cart_id,scope,qty) => {
     axios.put(`/api/update-quantity/${cart_id}/${scope}`).then(res => {
         //console.log(res.data.status);
         if(res.data.status===200){
@@ -97,7 +118,8 @@ const updateCartQuantity = (cart_id,scope) => {
             </td>
             <td width="15%" className="text-center">{item.product.selling_price * item.product_qty}</td>
             <td width="10%">
-                <button type="button" className="btn btn-danger btn-sm"> Remove</button>
+                <button type="button" className="btn btn-danger btn-sm" 
+                onClick={(e) => handleDelete(e,item.id)}> Remove</button>
             </td>
             </tr>
           )
