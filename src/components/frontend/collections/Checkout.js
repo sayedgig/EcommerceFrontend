@@ -11,6 +11,51 @@ const Checkout = () => {
   const [cart, setCart] = useState([]);
   const [loding, setLoding] = useState(true);
   var totalCartPrice = 0;
+  
+  const [errorList, setError] = useState([]);
+  const [checkoutInput, setCheckout] = useState({
+    'firstname':'', 
+    'lastname':'', 
+    'phone':'', 
+    'email':'', 
+    'address':'', 
+    'city':'', 
+    'state':'', 
+    'zipcode':'', 
+  });
+
+const handleInput = (e) => {
+    e.persist();
+    setCheckout({...checkoutInput,[e.target.name]:e.target.value});
+
+}
+
+const submitOrder = (e) =>{
+    e.preventDefault();
+    const data = {
+        'firstname':checkoutInput.firstname, 
+        'lastname':checkoutInput.lastname, 
+        'phone':checkoutInput.phone, 
+        'email':checkoutInput.email, 
+        'address':checkoutInput.address, 
+        'city':checkoutInput.city, 
+        'state':checkoutInput.state, 
+        'zipcode':checkoutInput.zipcode,   
+    };
+
+    axios.post(`/api/place-order`,data).then(
+        res => {
+            if(res.data.status===200){
+                    swal("order placed successfully",res.data.message,"success");
+                    setError([]);
+                    history.push("/thank-you");
+            }else if(res.data.status===422){
+                swal("All fields are mandatory","","success");
+                setError(res.data.errors);
+            }
+        }
+    );
+}
 
   useEffect(() => {
     let isMounted = true;
@@ -91,63 +136,75 @@ const Checkout = () => {
                                    <div className="col-md-6">
                                        <div className="form-group mb-3">
                                            <label>first name</label>
-                                           <input type="text" className="form-control" name="firstname" />
-
+                                           <input type="text" className="form-control" 
+                                           name="firstname" 
+                                            onChange={handleInput} value={checkoutInput.firstname}/>
+                                           <small className="text-danger">{errorList.firstname}</small>
                                        </div>
                                     </div>
                                     <div className="col-md-6">
                                        <div className="form-group mb-3">
                                            <label>last name</label>
-                                           <input type="text" className="form-control" name="lastname" />
-
+                                           <input type="text" className="form-control" 
+                                           name="lastname"  
+                                           onChange={handleInput} value={checkoutInput.lastname}/>
+                                        <small className="text-danger">{errorList.lastname}</small>
                                        </div>
                                     </div>
                                     <div className="col-md-6">
                                        <div className="form-group mb-3">
                                            <label>phone number</label>
-                                           <input type="text" className="form-control" name="phonenumber" />
-
+                                           <input type="text" className="form-control" 
+                                           name="phone"   onChange={handleInput} value={checkoutInput.phone}/>
+ <small className="text-danger">{errorList.phone}</small>
                                        </div>
                                     </div>
                                     <div className="col-md-6">
                                        <div className="form-group mb-3">
                                            <label>email address</label>
-                                           <input type="text" className="form-control" name="email" />
-
+                                           <input type="text" className="form-control"
+                                            name="email"   onChange={handleInput} value={checkoutInput.email}/>
+                                      <small className="text-danger">{errorList.email}</small>
                                        </div>
                                     </div>
                                     <div className="col-md-12">
                                        <div className="form-group mb-3">
                                            <label>full address</label>
-                                           <textarea type="text" row="2" className="form-control" name="email" ></textarea>
+                                           <textarea type="text" row="2" className="form-control" 
+                                           name="address"   onChange={handleInput} value={checkoutInput.address}></textarea>
+                                            <small className="text-danger">{errorList.address}</small>
                                            
                                        </div>
                                     </div>
                                     <div className="col-md-4">
                                        <div className="form-group mb-3">
                                            <label>city</label>
-                                           <input type="text" className="form-control" name="city" />
-
+                                           <input type="text" className="form-control" 
+                                           name="city"   onChange={handleInput} value={checkoutInput.city}/>
+<small className="text-danger">{errorList.city}</small>
+                                           
                                        </div>
                                     </div>
                                     <div className="col-md-4">
                                        <div className="form-group mb-3">
                                            <label>state</label>
-                                           <input type="text" className="form-control" name="state" />
-
+                                           <input type="text" className="form-control" 
+                                           name="state"   onChange={handleInput} value={checkoutInput.state}/>
+<small className="text-danger">{errorList.state}</small>
                                        </div>
                                     </div>
                                     <div className="col-md-4">
                                        <div className="form-group mb-3">
                                            <label>zip code</label>
-                                           <input type="text" className="form-control" name="zipcode" />
-
+                                           <input type="text" className="form-control" 
+                                           name="zipcode"   onChange={handleInput} value={checkoutInput.zipcode}/>
+<small className="text-danger">{errorList.zipcode}</small>
                                        </div>
                                        </div>
                                     <div className="col-md-12">  
                                        <div className="form-group mb-3">
                                            
-                                           <button type="button" className="btn-primary btn-sm" >place order</button>
+                                           <button type="button" onClick={submitOrder} className="btn-primary btn-sm" >place order</button>
 
                                        </div>
                                     </div>

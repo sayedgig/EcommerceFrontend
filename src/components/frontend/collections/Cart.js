@@ -143,6 +143,23 @@ const updateCartQuantity = (cart_id,scope,qty) => {
                 <tbody>
                 
                     {cart_table}
+
+                    <div className="col-md-8"></div>
+                   <div className="col-md-4">
+                       <div className="card card-body mt-3">
+                           <h4>sub total
+                               <span className="float-end">{totalCartPrice}</span>
+                           </h4>
+                           <h4>grand total
+                               <span className="float-end">{totalCartPrice}</span>
+                           </h4>
+                           <hr />
+                           <Link to="/checkout" className="btn btn-primary" >checkout</Link>
+
+                       </div>
+
+                   </div>
+  
                 </tbody>
                 </table>
 
@@ -168,22 +185,7 @@ const updateCartQuantity = (cart_id,scope,qty) => {
                <div className="col-md-12">
                 {cart_html}
                </div>
-               <div className="col-md-8"></div>
-                   <div className="col-md-4">
-                       <div className="card card-body mt-3">
-                           <h4>sub total
-                               <span className="float-end">{totalCartPrice}</span>
-                           </h4>
-                           <h4>grand total
-                               <span className="float-end">{totalCartPrice}</span>
-                           </h4>
-                           <hr />
-                           <Link to="/checkout" className="btn btn-primary" >checkout</Link>
-
-                       </div>
-
-                   </div>
-               
+                            
 
           </div>
         </div>
